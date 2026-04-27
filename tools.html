@@ -1,1 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tools | My Website</title>
+  <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+    }
 
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 10px 0;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 16px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    hr {
+      border: 1px solid #ccc;
+      margin: 0;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    main h1 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .tool-box {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 24px;
+      margin-bottom: 30px;
+    }
+
+    .tool-box h2 {
+      color: #2c3e50;
+      margin-top: 0;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    input[type="number"],
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 8px 10px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    .row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .row > div {
+      flex: 1;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-right: 8px;
+      margin-top: 4px;
+    }
+
+    button:hover {
+      background-color: #1a252f;
+    }
+
+    .result {
+      margin-top: 14px;
+      padding: 12px;
+      background-color: #f0f0f0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 15px;
+      min-height: 40px;
+      color: #2c3e50;
+      word-break: break-all;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+      color: #333;
+      margin: 0;
+    }
+
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 14px;
+    }
+
+    footer a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    footer p {
+      margin: 10px 0 0;
+      font-size: 13px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>My Tools</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="tools.html">Tools</a>
+      <a href="about.html">About Us</a>
+    </nav>
+  </header>
+  <hr>
+
+  <!-- MAIN -->
+  <main>
+    <h1>Interactive Tools</h1>
+
+    <!-- TOOL 1: Unit Converter -->
+    <div class="tool-box">
+      <h2>📐 Unit Converter</h2>
+      <p>Convert between different units of measurement.</p>
+
+      <label>Category:</label>
+      <select id="uc-category" onchange="updateUnits()">
+        <option value="length">Length</option>
+        <option value="weight">Weight</option>
+        <option value="temp">Temperature</option>
+      </select>
+
+      <div class="row">
+        <div>
+          <label>From:</label>
+          <select id="uc-from"></select>
+        </div>
+        <div>
+          <label>To:</label>
+          <select id="uc-to"></select>
+        </div>
+      </div>
+
+      <label>Value:</label>
+      <input type="number" id="uc-value" placeholder="Enter value here" />
+
+      <button onclick="convertUnit()">Convert</button>
+
+      <div class="result" id="uc-result">Result will appear here.</div>
+    </div>
+
+    <!-- TOOL 2: Password Generator -->
+    <div class="tool-box">
+      <h2>🔐 Password Generator</h2>
+      <p>Generate a strong and secure password.</p>
+
+      <label>Password Length: <span id="len-val">12</span></label>
+      <input type="range" id="pw-length" min="6" max="32" value="12"
+        oninput="document.getElementById('len-val').textContent = this.value" />
+
+      <label>Include:</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="pw-upper" checked> Uppercase (A-Z)</label>
+        <label><input type="checkbox" id="pw-lower" checked> Lowercase (a-z)</label>
+        <label><input type="checkbox" id="pw-num" checked> Numbers (0-9)</label>
+        <label><input type="checkbox" id="pw-sym"> Symbols (!@#$)</label>
+      </div>
+
+      <button onclick="generatePassword()">Generate</button>
+      <button onclick="copyPassword()">Copy</button>
+
+      <div class="result" id="pw-result">Your password will appear here.</div>
+    </div>
+
+    <!-- TOOL 3: BMI Calculator -->
+    <div class="tool-box">
+      <h2>⚖️ BMI Calculator</h2>
+      <p>Calculate your Body Mass Index (BMI).</p>
+
+      <label>Unit:</label>
+      <select id="bmi-unit" onchange="updateBmiLabels()">
+        <option value="metric">Metric (kg / cm)</option>
+        <option value="imperial">Imperial (lbs / inches)</option>
+      </select>
+
+      <div class="row">
+        <div>
+          <label id="weight-lbl">Weight (kg):</label>
+          <input type="number" id="bmi-weight" placeholder="e.g. 65" />
+        </div>
+        <div>
+          <label id="height-lbl">Height (cm):</label>
+          <input type="number" id="bmi-height" placeholder="e.g. 170" />
+        </div>
+      </div>
+
+      <button onclick="calcBMI()">Calculate BMI</button>
+
+      <div class="result" id="bmi-result">Result will appear here.</div>
+
+      <ul style="margin-top: 12px; font-size: 13px; color: #777;">
+        <li>Below 18.5 — Underweight</li>
+        <li>18.5 to 24.9 — Normal Weight</li>
+        <li>25 to 29.9 — Overweight</li>
+        <li>30 and above — Obese</li>
+      </ul>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="tools.html">Tools</a>
+      <a href="about.html">About Us</a>
+    </div>
+    <p>© 2026 My Website. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // ── UNIT CONVERTER ──────────────────────────────
+    var units = {
+      length: ["Meter", "Kilometer", "Centimeter", "Mile", "Foot", "Inch"],
+      weight: ["Kilogram", "Gram", "Pound", "Ounce"],
+      temp:   ["Celsius", "Fahrenheit", "Kelvin"]
+    };
+
+    function updateUnits() {
+      var cat = document.getElementById("uc-category").value;
+      var list = units[cat];
+      var fromSel = document.getElementById("uc-from");
+      var toSel = document.getElementById("uc-to");
+
+      fromSel.innerHTML = "";
+      toSel.innerHTML = "";
+
+      for (var i = 0; i < list.length; i++) {
+        fromSel.innerHTML += "<option value='" + i + "'>" + list[i] + "</option>";
+        toSel.innerHTML += "<option value='" + i + "'>" + list[i] + "</option>";
+      }
+      toSel.selectedIndex = 1;
+      document.getElementById("uc-result").textContent = "Result will appear here.";
+    }
+    updateUnits();
+
+    function convertUnit() {
+      var cat = document.getElementById("uc-category").value;
+      var val = parseFloat(document.getElementById("uc-value").value);
+      var from = parseInt(document.getElementById("uc-from").value);
+      var to = parseInt(document.getElementById("uc-to").value);
+      var result = document.getElementById("uc-result");
+
+      if (isNaN(val)) {
+        result.textContent = "Please enter a valid number.";
+        return;
+      }
+
+      var toBase = {
+        length: [1, 1000, 0.01, 1609.344, 0.3048, 0.0254],
+        weight: [1, 0.001, 0.453592, 0.028349]
+      };
+
+      var output;
+
+      if (cat === "temp") {
+        var celsius;
+        if (from === 0) celsius = val;
+        else if (from === 1) celsius = (val - 32) * 5 / 9;
+        else celsius = val - 273.15;
+
+        if (to === 0) output = celsius;
+        else if (to === 1) output = celsius * 9 / 5 + 32;
+        else output = celsius + 273.15;
+      } else {
+        var base = val * toBase[cat][from];
+        output = base / toBase[cat][to];
+      }
+
+      var unitList = units[cat];
+      result.textContent = val + " " + unitList[from] + " = " + output.toFixed(4) + " " + unitList[to];
+    }
+
+    // ── PASSWORD GENERATOR ──────────────────────────
+    var lastPassword = "";
+
+    function generatePassword() {
+      var len = parseInt(document.getElementById("pw-length").value);
+      var upper = document.getElementById("pw-upper").checked;
+      var lower = document.getElementById("pw-lower").checked;
+      var num   = document.getElementById("pw-num").checked;
+      var sym   = document.getElementById("pw-sym").checked;
+      var result = document.getElementById("pw-result");
+
+      if (!upper && !lower && !num && !sym) {
+        result.textContent = "Please select at least one character type.";
+        return;
+      }
+
+      var chars = "";
+      if (upper) chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      if (lower) chars += "abcdefghijklmnopqrstuvwxyz";
+      if (num)   chars += "0123456789";
+      if (sym)   chars += "!@#$%^&*()_+-=";
+
+      var password = "";
+      for (var i = 0; i < len; i++) {
+        password += chars[Math.floor(Math.random() * chars.length)];
+      }
+
+      lastPassword = password;
+      result.textContent = password;
+    }
+
+    function copyPassword() {
+      if (lastPassword === "") {
+        generatePassword();
+      }
+      navigator.clipboard.writeText(lastPassword).then(function() {
+        var result = document.getElementById("pw-result");
+        var original = result.textContent;
+        result.textContent = "Copied to clipboard!";
+        setTimeout(function() {
+          result.textContent = original;
+        }, 1500);
+      });
+    }
+
+    // ── BMI CALCULATOR ──────────────────────────────
+    function updateBmiLabels() {
+      var unit = document.getElementById("bmi-unit").value;
+      if (unit === "metric") {
+        document.getElementById("weight-lbl").textContent = "Weight (kg):";
+        document.getElementById("height-lbl").textContent = "Height (cm):";
+        document.getElementById("bmi-weight").placeholder = "e.g. 65";
+        document.getElementById("bmi-height").placeholder = "e.g. 170";
+      } else {
+        document.getElementById("weight-lbl").textContent = "Weight (lbs):";
+        document.getElementById("height-lbl").textContent = "Height (inches):";
+        document.getElementById("bmi-weight").placeholder = "e.g. 143";
+        document.getElementById("bmi-height").placeholder = "e.g. 67";
+      }
+      document.getElementById("bmi-result").textContent = "Result will appear here.";
+    }
+
+    function calcBMI() {
+      var unit   = document.getElementById("bmi-unit").value;
+      var weight = parseFloat(document.getElementById("bmi-weight").value);
+      var height = parseFloat(document.getElementById("bmi-height").value);
+      var result = document.getElementById("bmi-result");
+
+      if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+        result.textContent = "Please enter valid weight and height.";
+        return;
+      }
+
+      var bmi;
+      if (unit === "metric") {
+        bmi = weight / Math.pow(height / 100, 2);
+      } else {
+        bmi = (703 * weight) / Math.pow(height, 2);
+      }
+
+      var category;
+      if (bmi < 18.5) category = "Underweight";
+      else if (bmi < 25) category = "Normal Weight";
+      else if (bmi < 30) category = "Overweight";
+      else category = "Obese";
+
+      result.textContent = "Your BMI is " + bmi.toFixed(2) + " — " + category;
+    }
+  </script>
+
+</body>
+</html>
