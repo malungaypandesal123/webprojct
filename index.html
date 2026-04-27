@@ -1,1 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+    }
 
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 10px 0;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 16px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    hr {
+      border: 1px solid #ccc;
+      margin: 0;
+    }
+
+    main {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    main h1 {
+      font-size: 36px;
+      color: #2c3e50;
+    }
+
+    main p {
+      font-size: 16px;
+      color: #666;
+      max-width: 600px;
+      margin: 10px auto 30px;
+    }
+
+    .btn-row {
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      margin: 5px;
+      background-color: #2c3e50;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 15px;
+    }
+
+    .btn:hover {
+      background-color: #1a252f;
+    }
+
+    .features {
+      background-color: white;
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .features h2 {
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 24px;
+      width: 250px;
+      text-align: left;
+    }
+
+    .card h3 {
+      color: #2c3e50;
+      margin-top: 0;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 14px;
+    }
+
+    footer a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    footer p {
+      margin: 10px 0 0;
+      font-size: 13px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>Welcome to our Website!</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="tools.html">Tools</a>
+      <a href="about.html">About Us</a>
+    </nav>
+  </header>
+  <hr>
+
+  <!-- MAIN -->
+  <main>
+    <h1>Hello!</h1>
+    <p>Welcome to our website. Here you will find useful tools and information about the developers.</p>
+    <div class="btn-row">
+      <a href="tools.html" class="btn">Explore Tools</a>
+      <a href="about.html" class="btn">About Us</a>
+    </div>
+  </main>
+
+  <!-- FEATURES -->
+  <div class="features">
+    <h2>What's on this Website</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>🛠️ Tools</h3>
+        <p>Three interactive JavaScript tools you can use — a Unit Converter, Password Generator, and BMI Calculator.</p>
+      </div>
+      <div class="card">
+        <h3>👤 About Us</h3>
+        <p>Learn more about the developers — their background, hobbies, and personal mottos.</p>
+      </div>
+      <div class="card">
+        <h3>💡 Built with Code</h3>
+        <p>This website is built using HTML, CSS, and JavaScript.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="tools.html">Tools</a>
+      <a href="about.html">About Us</a>
+    </div>
+    <p>© 2026 My Website. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
